@@ -1,0 +1,55 @@
+﻿@model IEnumerable< JICtravel.Web.Data.Entities.SlaveEntity >
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h2> Hello Pinche Pendejo</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Document)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserType)
+            </th>
+            <th>
+                Numbers of Trips
+            </th>
+            <th>
+                Expensives Total
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Document)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trips.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalTrips)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
