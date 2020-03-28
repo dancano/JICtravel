@@ -18,5 +18,14 @@ namespace JICtravel.Web.Data
         public DbSet<TripDetailEntity> TripDetails { get; set; }
         public DbSet<ExpensiveTypeEntity> ExpensivesType { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<SlaveEntity>()
+                .HasIndex(d => d.Document)
+                .IsUnique();
+        }
+
     }
 }
