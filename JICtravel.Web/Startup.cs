@@ -38,7 +38,6 @@ namespace JICtravel.Web
 
             services.AddIdentity<SlaveEntity, IdentityRole>(cfg =>
             {
-                cfg.User.RequireUniqueEmail = true;
                 cfg.Password.RequireDigit = false;
                 cfg.Password.RequiredUniqueChars = 0;
                 cfg.Password.RequireLowercase = false;

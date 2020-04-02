@@ -28,15 +28,16 @@ namespace JICtravel.Web.Controllers
         }
 
         // GET: Trips/Details/5
-        public async Task<IActionResult> Details(string dni)
+        public async Task<IActionResult> Details(string id)
         {
-            if (dni == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             SlaveEntity slaveEntity = await _context.Users
-                .FirstOrDefaultAsync(d => d.Document == dni);
+                .Include(d => d.Trips)
+                .FirstOrDefaultAsync(d => d.Document == id);
             if (slaveEntity == null)
             {
                 return NotFound();

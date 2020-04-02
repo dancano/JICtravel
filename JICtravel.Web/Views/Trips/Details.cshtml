@@ -6,30 +6,45 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>TripEntity</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Trips.FirstOrDefault().StartDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Trips.FirstOrDefault().StartDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Trips.FirstOrDefault().EndDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Trips.FirstOrDefault().EndDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Trips.FirstOrDefault().CityVisited)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Trips.FirstOrDefault().CityVisited)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Trips.FirstOrDefault().CityVisited)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trips.FirstOrDefault().StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trips.FirstOrDefault().EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trips.FirstOrDefault().TotalExpensives)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Trips)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityVisited)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalExpensives)
+            </td>
+            <td>
+                <a asp-action="TripDetails" asp-route-id="@item.Id" class="btn btn-info">Trip Details</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -23,8 +23,8 @@ namespace JICtravel.Web.Data
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRolesAsync();
             await CheckUserAsync("1000", "Daniel Dario", "Cano Peña", "ddcp10@gmail.com", "311 389 1325", UserType.Admin);
-            var user1 = CheckUserAsync("1010", "Dario", "Cano", "danieldario_01@hotmail.com", "319 524 2117", UserType.Slave);
-            var user2 = CheckUserAsync("1020", "Dani", "Peña", "danielcano198367@correo.itm.edu.co", "322 234 4798", UserType.Slave);
+            var user1 = await CheckUserAsync("1010", "Dario", "Cano", "danieldario_01@hotmail.com", "319 524 2117", UserType.Slave);
+            var user2 = await CheckUserAsync("1020", "Dani", "Peña", "danielcano198367@correo.itm.edu.co", "322 234 4798", UserType.Slave);
             await CheckTripsAsync(user1, user2);
         }
 

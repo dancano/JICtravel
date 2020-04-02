@@ -1,4 +1,4 @@
-﻿@model JICtravel.Web.Data.Entities.SlaveEntity
+﻿@model IEnumerable<JICtravel.Web.Data.Entities.SlaveEntity>
 
 @{
     ViewData["Title"] = "Index";
@@ -28,6 +28,28 @@
         </tr>
     </thead>
     <tbody>
-
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Document)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trips.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalTrips)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Document" class="btn btn-info">Details</a>
+            </td>
+        </tr>
+        }
     </tbody>
 </table>
