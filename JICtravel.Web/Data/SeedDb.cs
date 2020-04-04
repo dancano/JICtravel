@@ -3,6 +3,7 @@ using JICtravel.Web.Data.Entities;
 using JICtravel.Web.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace JICtravel.Web.Data
@@ -23,8 +24,8 @@ namespace JICtravel.Web.Data
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRolesAsync();
             await CheckUserAsync("1000", "Daniel Dario", "Cano Peña", "ddcp10@gmail.com", "311 389 1325", UserType.Admin);
-            var user1 = await CheckUserAsync("1010", "Dario", "Cano", "danieldario_01@hotmail.com", "319 524 2117", UserType.Slave);
-            var user2 = await CheckUserAsync("1020", "Dani", "Peña", "danielcano198367@correo.itm.edu.co", "322 234 4798", UserType.Slave);
+            SlaveEntity user1 = await CheckUserAsync("1010", "Dario", "Cano", "danieldario_01@hotmail.com", "319 524 2117", UserType.Slave);
+            SlaveEntity user2 = await CheckUserAsync("1020", "Dani", "Peña", "danielcano198367@correo.itm.edu.co", "322 234 4798", UserType.Slave);
             await CheckTripsAsync(user1, user2);
         }
 
@@ -68,15 +69,17 @@ namespace JICtravel.Web.Data
         private async Task CheckTripsAsync(
             SlaveEntity user1,
             SlaveEntity user2
-)
+        )
         {
-            _dataContext.Trips.Add(new TripEntity
+            if (!_dataContext.Trips.Any())
             {
-                Slave = user1,
-                StartDate = DateTime.UtcNow,
-                EndDate = DateTime.UtcNow.AddDays(2),
-                CityVisited = "Bogotá",
-                TripDetails = new List<TripDetailEntity>
+                _dataContext.Trips.Add(new TripEntity
+                {
+                    Slave = user1,
+                    StartDate = DateTime.UtcNow,
+                    EndDate = DateTime.UtcNow.AddDays(2),
+                    CityVisited = "Bogotá",
+                    TripDetails = new List<TripDetailEntity>
                     {
                         new TripDetailEntity
                         {
@@ -116,15 +119,15 @@ namespace JICtravel.Web.Data
                         },
                     }
 
-            });
+                });
 
-            _dataContext.Trips.Add(new TripEntity
-            {
-                Slave = user2,
-                StartDate = DateTime.UtcNow,
-                EndDate = DateTime.UtcNow.AddDays(2),
-                CityVisited = "Bogotá",
-                TripDetails = new List<TripDetailEntity>
+                _dataContext.Trips.Add(new TripEntity
+                {
+                    Slave = user2,
+                    StartDate = DateTime.UtcNow,
+                    EndDate = DateTime.UtcNow.AddDays(2),
+                    CityVisited = "Bogotá",
+                    TripDetails = new List<TripDetailEntity>
                     {
                         new TripDetailEntity
                         {
@@ -164,9 +167,10 @@ namespace JICtravel.Web.Data
                         }
                     }
 
-            });
+                });
 
-            await _dataContext.SaveChangesAsync();
+                await _dataContext.SaveChangesAsync();
+            }
         }
     }
 }

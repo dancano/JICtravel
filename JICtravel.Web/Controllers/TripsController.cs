@@ -1,13 +1,15 @@
 ﻿using JICtravel.Common.Enums;
 using JICtravel.Web.Data;
 using JICtravel.Web.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace JICtravel.Web.Controllers
-{
+{   
+    [Authorize(Roles = "Admin")]
     public class TripsController : Controller
     {
         private readonly DataContext _context;
@@ -37,6 +39,7 @@ namespace JICtravel.Web.Controllers
 
             SlaveEntity slaveEntity = await _context.Users
                 .Include(d => d.Trips)
+                .ThenInclude(d => d.TripDetails)
                 .FirstOrDefaultAsync(d => d.Document == id);
             if (slaveEntity == null)
             {

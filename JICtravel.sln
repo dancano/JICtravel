@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.98
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JICtravel.Common", "JICtravel.Common\JICtravel.Common.csproj", "{2FA498AF-C9BF-4F46-8B60-FC85C9F35E2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JICtravel.Common", "JICtravel.Common\JICtravel.Common.csproj", "{2FA498AF-C9BF-4F46-8B60-FC85C9F35E2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JICtravel.Web", "JICtravel.Web\JICtravel.Web.csproj", "{FC4AC14B-712C-4796-BB27-0368C024E888}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JICtravel.Web", "JICtravel.Web\JICtravel.Web.csproj", "{FC4AC14B-712C-4796-BB27-0368C024E888}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JICtravel.Prism", "JICtravel.Prism\JICtravel.Prism\JICtravel.Prism.csproj", "{FA70CC2A-6E0B-4996-83E7-B189F0BA0FD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JICtravel.Prism", "JICtravel.Prism\JICtravel.Prism\JICtravel.Prism.csproj", "{FA70CC2A-6E0B-4996-83E7-B189F0BA0FD1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JICtravel.Prism.Android", "JICtravel.Prism\JICtravel.Prism.Android\JICtravel.Prism.Android.csproj", "{0E5A0E5D-5613-41B5-AEC4-E3EC05D6E2F8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JICtravel.Prism.iOS", "JICtravel.Prism\JICtravel.Prism.iOS\JICtravel.Prism.iOS.csproj", "{117BD449-5A73-47AB-B7DD-430A1416084F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,26 +135,6 @@ Global
 		{0E5A0E5D-5613-41B5-AEC4-E3EC05D6E2F8}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{0E5A0E5D-5613-41B5-AEC4-E3EC05D6E2F8}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{0E5A0E5D-5613-41B5-AEC4-E3EC05D6E2F8}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Ad-Hoc|Any CPU.ActiveCfg = Ad-Hoc|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.AppStore|Any CPU.ActiveCfg = AppStore|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Debug|Any CPU.ActiveCfg = Debug|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Debug|iPhone.Build.0 = Debug|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Release|Any CPU.ActiveCfg = Release|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Release|iPhone.ActiveCfg = Release|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Release|iPhone.Build.0 = Release|iPhone
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{117BD449-5A73-47AB-B7DD-430A1416084F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

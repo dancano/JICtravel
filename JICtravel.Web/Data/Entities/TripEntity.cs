@@ -27,7 +27,7 @@ namespace JICtravel.Web.Data.Entities
         [MaxLength(100, ErrorMessage = "The {0} field must have {1} characters.")]
         public string CityVisited { get; set; }
 
-        public double TotalExpensives => TripDetails == null ? 0 : TripDetails.Sum(t => t.Expensive);
+        public decimal TotalExpensives => TripDetails == null ? 0 : TripDetails.Sum(t => t.Expensive);
 
         public SlaveEntity Slave { get; set; }
 

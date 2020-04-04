@@ -1,4 +1,5 @@
 ﻿using JICtravel.Web.Data.Entities;
+using JICtravel.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,32 @@ namespace JICtravel.Web.Helpers
     {
         private readonly UserManager<SlaveEntity> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<SlaveEntity> _signInManager;
 
         public UserHelper(
             UserManager<SlaveEntity> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<SlaveEntity> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
+
+        public async Task<SignInResult> LoginAsync(LoginViewModel model)
+        {
+            return await _signInManager.PasswordSignInAsync(
+                model.Username,
+                model.Password,
+                model.RememberMe,
+                false);
+        }
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
+        }
+
+
         public async Task<IdentityResult> AddUserAsync(SlaveEntity user, string password)
         {
             return await _userManager.CreateAsync(user, password);

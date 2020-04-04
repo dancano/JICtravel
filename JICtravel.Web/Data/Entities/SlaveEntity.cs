@@ -26,6 +26,8 @@ namespace JICtravel.Web.Data.Entities
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         public string LastName { get; set; }
 
+        public string Email { get; set; }
+
         [Display(Name = "User Type")]
         public UserType UserType { get; set; }
 
@@ -33,7 +35,7 @@ namespace JICtravel.Web.Data.Entities
 
         public ICollection<TripEntity> Trips { get; set; }
 
-        public double TotalTrips => Trips == null ? 0 : Trips.Sum(t => t.TotalExpensives);
+        public decimal TotalTrips => Trips == null ? 0 : Trips.Sum(t => t.TotalExpensives);
 
         [Display(Name = "Picture")]
         public string PicturePath { get; set; }

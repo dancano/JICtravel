@@ -1,4 +1,5 @@
 ﻿using JICtravel.Web.Data.Entities;
+using JICtravel.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ namespace JICtravel.Web.Helpers
         Task AddUserToRoleAsync(SlaveEntity user, string roleName);
 
         Task<bool> IsUserInRoleAsync(SlaveEntity user, string roleName);
+
+        Task<SignInResult> LoginAsync(LoginViewModel model);
+
+        Task LogoutAsync();
+
     }
 
 }

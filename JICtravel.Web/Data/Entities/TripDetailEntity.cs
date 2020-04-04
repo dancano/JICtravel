@@ -17,7 +17,7 @@ namespace JICtravel.Web.Data.Entities
 
         public DateTime StartDateLocal => StartDate.ToLocalTime();
 
-        public double Expensive { get; set; }
+        public decimal Expensive { get; set; }
 
         [Display(Name = "Invoice Picture")]
         public string PicturePath { get; set; }
