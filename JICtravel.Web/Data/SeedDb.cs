@@ -23,10 +23,22 @@ namespace JICtravel.Web.Data
         {
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRolesAsync();
+            CheckExpensiveType();
             await CheckUserAsync("1000", "Daniel Dario", "Cano Peña", "ddcp10@gmail.com", "311 389 1325", UserType.Admin);
             SlaveEntity user1 = await CheckUserAsync("1010", "Dario", "Cano", "danieldario_01@hotmail.com", "319 524 2117", UserType.Slave);
             SlaveEntity user2 = await CheckUserAsync("1020", "Dani", "Peña", "danielcano198367@correo.itm.edu.co", "322 234 4798", UserType.Slave);
             await CheckTripsAsync(user1, user2);
+        }
+
+        private void CheckExpensiveType()
+        {
+            if (!_dataContext.ExpensivesType.Any())
+            {
+                _dataContext.ExpensivesType.Add(new ExpensiveTypeEntity { ExpensiveType = "Alimentación" });
+                _dataContext.ExpensivesType.Add(new ExpensiveTypeEntity { ExpensiveType = "Transporte" });
+                _dataContext.ExpensivesType.Add(new ExpensiveTypeEntity { ExpensiveType = "Hospedaje" });               
+            }
+
         }
 
         private async Task<SlaveEntity> CheckUserAsync(

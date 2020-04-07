@@ -49,6 +49,25 @@ namespace JICtravel.Web.Controllers
             return View(slaveEntity);
         }
 
+        public async Task<IActionResult> ExpenseDetail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            TripEntity tripEntity = await _context.Trips
+                .Include(d => d.TripDetails)
+                .ThenInclude(d => d.ExpensivesType)
+                .FirstOrDefaultAsync(d => d.Id == id);
+
+            if (tripEntity == null)
+            {
+                return NotFound();
+            }
+
+            return View(tripEntity);
+        }
 
     }
 }

@@ -1,0 +1,44 @@
+﻿@model JICtravel.Web.Data.Entities.TripEntity
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().StartDateLocal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().ExpensivesType.FirstOrDefault().ExpensiveType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().Expensive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().PicturePath)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TripDetails)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDateLocal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpensivesType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Expensive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PicturePath)
+                    </td>
+                    <td>
+                        <a asp-action="Index">Back to List</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
