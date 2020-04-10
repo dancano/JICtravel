@@ -43,7 +43,7 @@ namespace JICtravel.Web.Controllers.API
             SlaveEntity slaveEntity = await _context.Slaves
                 .Include(s => s.Trips)
                 .ThenInclude(s => s.TripDetails)
-                .ThenInclude(s => s.ExpensivesType)
+                .ThenInclude(s => s.ExpensiveType)
                 .FirstOrDefaultAsync(t => t.Document == document);
 
             if (slaveEntity == null)

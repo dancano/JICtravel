@@ -24,7 +24,7 @@ namespace JICtravel.Web.Data.Entities
 
         public TripEntity Trips { get; set; }
 
-        public ICollection<ExpensiveTypeEntity> ExpensivesType { get; set; }
+        public ExpensiveTypeEntity ExpensiveType { get; set; }
 
     }
 }

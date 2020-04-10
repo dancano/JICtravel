@@ -43,7 +43,7 @@ namespace JICtravel.Web.Controllers.API
             TripEntity tripEntity = await _context.Trips
                 .Include(t => t.Slave)
                 .Include(t => t.TripDetails)
-                .ThenInclude(t => t.ExpensivesType)
+                .ThenInclude(t => t.ExpensiveType)
                 .Include(t => t.Slave)
                 .FirstOrDefaultAsync(t => t.Id == id);
 

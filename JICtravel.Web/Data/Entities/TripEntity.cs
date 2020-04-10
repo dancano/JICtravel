@@ -32,7 +32,5 @@ namespace JICtravel.Web.Data.Entities
         public SlaveEntity Slave { get; set; }
 
         public ICollection<TripDetailEntity> TripDetails { get; set; }
-
-
     }
 }

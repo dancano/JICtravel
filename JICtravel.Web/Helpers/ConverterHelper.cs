@@ -29,12 +29,7 @@ namespace JICtravel.Web.Helpers
                         Id = td.Id,
                         StartDate = td.StartDate,
                         Expensive = td.Expensive,
-                        PicturePath = td.PicturePath,
-                        expensiveTypes = td.ExpensivesType?.Select(et => new ExpensiveTypeResponse
-                        {
-                            Id = et.Id,
-                            ExpensiveType = et.ExpensiveType
-                        }).ToList()
+                        PicturePath = td.PicturePath
                     }).ToList()
                 }).ToList()
             };

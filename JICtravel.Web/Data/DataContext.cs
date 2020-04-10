@@ -13,9 +13,13 @@ namespace JICtravel.Web.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
+
         public DbSet<SlaveEntity> Slaves { get; set; }
+
         public DbSet<TripEntity> Trips { get; set; }
+        
         public DbSet<TripDetailEntity> TripDetails { get; set; }
+        
         public DbSet<ExpensiveTypeEntity> ExpensivesType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

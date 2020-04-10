@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JICtravel.Web.Data.Entities
 {
@@ -10,7 +11,7 @@ namespace JICtravel.Web.Data.Entities
         [Display(Name = "Expensive Type")]
         public string ExpensiveType { get; set; }
 
-        public TripDetailEntity TripDetails { get; set; }
+        public ICollection<TripDetailEntity> TripDetails { get; set; }
 
     }
 }

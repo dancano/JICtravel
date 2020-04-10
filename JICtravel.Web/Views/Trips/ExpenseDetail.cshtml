@@ -7,7 +7,7 @@
                     @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().StartDateLocal)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().ExpensivesType.FirstOrDefault().ExpensiveType)
+                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().ExpensiveType)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().Expensive)
@@ -27,7 +27,7 @@
                         @Html.DisplayFor(modelItem => item.StartDateLocal)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ExpensivesType)
+                        @Html.DisplayFor(modelItem => item.ExpensiveType)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Expensive)

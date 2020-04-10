@@ -10,7 +10,6 @@ namespace JICtravel.Web.Data.Entities
 {
     public class SlaveEntity : IdentityUser
     {
-
         [Display(Name = "Document")]
         [MaxLength(20, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
@@ -26,8 +25,6 @@ namespace JICtravel.Web.Data.Entities
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         public string LastName { get; set; }
 
-        public string Email { get; set; }
-
         [Display(Name = "User Type")]
         public UserType UserType { get; set; }
 
@@ -39,7 +36,6 @@ namespace JICtravel.Web.Data.Entities
 
         [Display(Name = "Picture")]
         public string PicturePath { get; set; }
-
     }
 
 }

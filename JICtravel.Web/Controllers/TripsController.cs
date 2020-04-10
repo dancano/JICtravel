@@ -58,7 +58,7 @@ namespace JICtravel.Web.Controllers
 
             TripEntity tripEntity = await _context.Trips
                 .Include(d => d.TripDetails)
-                .ThenInclude(d => d.ExpensivesType)
+                .ThenInclude(d => d.ExpensiveType)
                 .FirstOrDefaultAsync(d => d.Id == id);
 
             if (tripEntity == null)

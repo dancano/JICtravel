@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using JICtravel.Web.Data;
+﻿using JICtravel.Web.Data;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +12,6 @@ namespace JICtravel.Web
             IWebHost host = CreateWebHostBuilder(args).Build();
             RunSeeding(host);
             host.Run();
-
         }
 
         private static void RunSeeding(IWebHost host)
@@ -27,8 +24,10 @@ namespace JICtravel.Web
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
+.UseStartup<Startup>();
+        }
     }
 }
