@@ -1,8 +1,6 @@
 ﻿using JICtravel.Web.Helpers;
 using JICtravel.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,7 +14,7 @@ namespace JICtravel.Web.Controllers
         {
             _userHelper = userHelper;
         }
-        
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -33,7 +31,7 @@ namespace JICtravel.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _userHelper.LoginAsync(model);
+                Microsoft.AspNetCore.Identity.SignInResult result = await _userHelper.LoginAsync(model);
                 if (result.Succeeded)
                 {
                     if (Request.Query.Keys.Contains("ReturnUrl"))

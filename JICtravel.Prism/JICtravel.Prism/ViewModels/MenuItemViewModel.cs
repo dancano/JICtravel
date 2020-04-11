@@ -1,9 +1,6 @@
 ﻿using JICtravel.Common.Models;
 using Prism.Commands;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JICtravel.Prism.ViewModels
 {

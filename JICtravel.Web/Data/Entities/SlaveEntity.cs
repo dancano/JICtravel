@@ -1,10 +1,8 @@
 ﻿using JICtravel.Common.Enums;
 using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace JICtravel.Web.Data.Entities
 {
@@ -32,7 +30,9 @@ namespace JICtravel.Web.Data.Entities
 
         public ICollection<TripEntity> Trips { get; set; }
 
-        public decimal TotalTrips => Trips == null ? 0 : Trips.Sum(t => t.TotalExpensives);
+        public decimal TotalExpensiveTrip => Trips == null ? 0 : Trips.Sum(t => t.TotalExpensives);
+
+        public decimal NumberOfTrips => Trips == null ? 0 : Trips.Count();
 
         [Display(Name = "Picture")]
         public string PicturePath { get; set; }

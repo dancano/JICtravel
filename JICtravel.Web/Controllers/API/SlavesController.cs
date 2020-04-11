@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using JICtravel.Web.Data;
+﻿using JICtravel.Web.Data;
 using JICtravel.Web.Data.Entities;
 using JICtravel.Web.Helpers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace JICtravel.Web.Controllers.API
 {

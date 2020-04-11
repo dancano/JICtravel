@@ -1,17 +1,14 @@
 ﻿using JICtravel.Common.Models;
 using JICtravel.Common.Service;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace JICtravel.Prism.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
+        private bool _isRunning;
         private readonly IApiService _apiService;
         private SlaveResponse _slave;
         private DelegateCommand _checkDocumentCommand;
@@ -24,6 +21,12 @@ namespace JICtravel.Prism.ViewModels
             Title = "Trips of Slave";
         }
 
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set => SetProperty(ref _isRunning, value);
+        }
+    
         public SlaveResponse Slave
         {
             get => _slave;
@@ -55,8 +58,10 @@ namespace JICtravel.Prism.ViewModels
                 return;
             }
 
+            IsRunning = true;
             string url = App.Current.Resources["UrlAPI"].ToString();
             Response response = await _apiService.GetTripAsync(Document, url, "api", "/Slaves");
+            IsRunning = false;
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(

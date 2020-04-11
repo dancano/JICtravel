@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace JICtravel.Web.Controllers
-{   
+{
     [Authorize(Roles = "Admin")]
     public class TripsController : Controller
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace JICtravel.Common.Models
+﻿namespace JICtravel.Common.Models
 {
     public class Response
     {

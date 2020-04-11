@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using JICtravel.Common.Models;
+﻿using JICtravel.Common.Models;
 using JICtravel.Web.Data.Entities;
+using System.Linq;
 
 namespace JICtravel.Web.Helpers
 {

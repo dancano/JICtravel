@@ -1,5 +1,7 @@
 ﻿@model JICtravel.Web.Data.Entities.TripEntity
 
+    <h1>Details Expensive</h1>
+
     <table class="table">
         <thead>
             <tr>
@@ -7,7 +9,7 @@
                     @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().StartDateLocal)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().ExpensiveType)
+                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().ExpensiveType.ExpensiveType)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().Expensive)
@@ -27,7 +29,7 @@
                         @Html.DisplayFor(modelItem => item.StartDateLocal)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ExpensiveType)
+                        @Html.DisplayFor(modelItem => item.ExpensiveType.ExpensiveType)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Expensive)

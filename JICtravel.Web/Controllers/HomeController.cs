@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using JICtravel.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using JICtravel.Web.Models;
+using System.Diagnostics;
 
 namespace JICtravel.Web.Controllers
 {

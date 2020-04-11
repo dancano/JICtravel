@@ -82,7 +82,7 @@ namespace JICtravel.Web.Data
         private async Task CheckTripsAsync(
             SlaveEntity user1,
             SlaveEntity user2
-        )   
+        )
         {
             if (!_dataContext.Trips.Any())
             {

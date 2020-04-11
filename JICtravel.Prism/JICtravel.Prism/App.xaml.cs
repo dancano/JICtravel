@@ -3,6 +3,7 @@ using JICtravel.Prism.ViewModels;
 using JICtravel.Prism.Views;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.Licensing;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,8 +18,8 @@ namespace JICtravel.Prism
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("MjM3OTczQDMxMzgyZTMxMmUzMGsxcUcrU0cyYTdXZDVqY3dUckdPQWRoWHdrUi8wak1mRHQvSUpQMU43N0k9");
             InitializeComponent();
-
             await NavigationService.NavigateAsync("/JICtravelMasterDetailPage/NavigationPage/HomePage");
         }
 

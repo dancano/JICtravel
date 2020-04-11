@@ -1,5 +1,3 @@
-using System;
-
 namespace JICtravel.Web.Models
 {
     public class ErrorViewModel
