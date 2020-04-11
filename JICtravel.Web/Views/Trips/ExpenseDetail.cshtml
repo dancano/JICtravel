@@ -33,7 +33,10 @@
                         @Html.DisplayFor(modelItem => item.Expensive)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PicturePath)
+                        @if (!string.IsNullOrEmpty(item.PicturePath))
+                        {
+                            <img src="@Url.Content(item.PicturePath)" alt="Image"/>
+                        }
                     </td>
                     <td>
                         <a asp-action="Index">Back to List</a>

@@ -82,7 +82,7 @@ namespace JICtravel.Web.Data
         private async Task CheckTripsAsync(
             SlaveEntity user1,
             SlaveEntity user2
-        )
+        )   
         {
             if (!_dataContext.Trips.Any())
             {
@@ -98,19 +98,22 @@ namespace JICtravel.Web.Data
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 580000,
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
+                            PicturePath = "$wwwroot/images/Invoice/Hotel 1.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Hotel")
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 390000,
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
+                            PicturePath = "$$wwwroot/images/Invoice/Alimento 1.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Alimentacion")
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 60000,
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
+                            PicturePath = "$$wwwroot/images/Invoice/Transporte 1.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Transporte")
                         },
                     }
 
@@ -128,19 +131,55 @@ namespace JICtravel.Web.Data
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 250000,
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
+                            PicturePath = "$wwwroot/images/Invoice/Hotel 2.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Hotel")
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 100000,
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
+                            PicturePath = "$wwwroot/images/Invoice/Alimento 2.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Alimentacion")
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 35000,
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
+                            PicturePath = "$wwwroot/images/Invoice/Transporte 2.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "transporte")
+                        }
+                    }
+
+                });
+
+                _dataContext.Trips.Add(new TripEntity
+                {
+                    Slave = user2,
+                    StartDate = DateTime.UtcNow,
+                    EndDate = DateTime.UtcNow.AddDays(2),
+                    CityVisited = "Cartagena",
+                    TripDetails = new List<TripDetailEntity>
+                    {
+                        new TripDetailEntity
+                        {
+                            StartDate = DateTime.UtcNow,
+                            Expensive = 250000,
+                            PicturePath = "$wwwroot/images/Invoice/Hotel 3.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Hotel")
+                        },
+                        new TripDetailEntity
+                        {
+                            StartDate = DateTime.UtcNow,
+                            Expensive = 100000,
+                            PicturePath = "$wwwroot/images/Invoice/Alimento 3.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Alimentacion")
+                        },
+                        new TripDetailEntity
+                        {
+                            StartDate = DateTime.UtcNow,
+                            Expensive = 35000,
+                            PicturePath = "$wwwroot/images/Invoice/Transporte 3.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "transporte")
                         }
                     }
 

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="JICtravel.Prism.Views.LoginPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="TravelFly.jpg" Aspect="AspectFill"/>
+            <BoxView Color="LemonChiffon" Opacity="0.8"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="JICtravels.png" WidthRequest="250" HeightRequest="250" Margin="0,50,0,30"/>
+
+                <StackLayout Grid.Row="1" Padding="30,20">
+                    <Entry Placeholder="Email" PlaceholderColor="Black"/>
+                    <Entry Placeholder="Password" PlaceholderColor="Black"/>
+                    <Button Text="Log In" BackgroundColor="Black" BorderRadius="20" TextColor="#F2F2F2"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Forgot Password?"/>
+                        <Label Text="Sing Up" HorizontalOptions="EndAndExpand" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" HorizontalOptions="Center" Margin="0,0,0,50">
+                        <Label Text="LogIn With" HorizontalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Grid.Row="0" Source="Face_Logo.png" WidthRequest="55" HeightRequest="55"/>
+                            <Image Grid.Row="0" Source="Insta_Logo.png" WidthRequest="50" HeightRequest="50"/>
+                            <Image Grid.Row="0" Source="In_Logo.png" WidthRequest="40" HeightRequest="40"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

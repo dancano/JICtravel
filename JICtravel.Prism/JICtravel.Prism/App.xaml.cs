@@ -1,4 +1,5 @@
-﻿using JICtravel.Prism.ViewModels;
+﻿using JICtravel.Common.Service;
+using JICtravel.Prism.ViewModels;
 using JICtravel.Prism.Views;
 using Prism;
 using Prism.Ioc;
@@ -18,13 +19,19 @@ namespace JICtravel.Prism
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/HomePage");
+            await NavigationService.NavigateAsync("/JICtravelMasterDetailPage/NavigationPage/HomePage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<JICtravelMasterDetailPage, JICtravelMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<NewTripPage, NewTripPageViewModel>();
+            containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
+            containerRegistry.RegisterForNavigation<ReportPage, ReportPageViewModel>();
         }
     }
 }

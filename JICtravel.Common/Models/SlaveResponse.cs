@@ -20,7 +20,9 @@ namespace JICtravel.Common.Models
 
         public List<TripResponse> Trips { get; set; }
 
-        public decimal TotalTrips => Trips == null ? 0 : Trips.Sum(t => t.TotalExpensives);
+        public decimal TotalExpensiveTrip => Trips == null ? 0 : Trips.Sum(t => t.TotalExpensives);
+
+        public decimal NumberOfTrips => Trips == null ? 0 : Trips.Count();
 
         public string PicturePath { get; set; }
 
