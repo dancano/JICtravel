@@ -5,6 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="JICtravel.Prism.Views.HomePage"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
 
     <AbsoluteLayout>
@@ -18,10 +19,7 @@
                        Placeholder="Enter document..." 
                        Text="{Binding Document}"
                        VerticalOptions="Center"/>
-                <Button BackgroundColor="Navy"
-                        Command="{Binding CheckDocumentCommand}"
-                        CornerRadius="20"
-                        HeightRequest="40"
+                <Button Command="{Binding CheckDocumentCommand}"
                         Margin="10,0"
                         Text="Check Document"
                         TextColor="White"/>
@@ -82,9 +80,9 @@
         <busyindicator:SfBusyIndicator AnimationType="Globe" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                 	                   AbsoluteLayout.LayoutFlags="All"
-                	                   BackgroundColor="Silver"
+                	                   BackgroundColor="{StaticResource ColorDanger}"
                 	                   HorizontalOptions="Center"
-                	                   TextColor="White"
+                	                   TextColor="{StaticResource ColorFont}"
                 	                   IsVisible="{Binding IsRunning}"
                 	                   Title="Loading..."
                 	                   VerticalOptions="Center"

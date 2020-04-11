@@ -1,5 +1,6 @@
 ﻿using JICtravel.Common.Models;
 using Newtonsoft.Json;
+using Plugin.Connectivity;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -47,5 +48,16 @@ namespace JICtravel.Common.Service
             }
 
         }
+
+        public async Task<bool> CheckConnectionAsync(string url)
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return false;
+            }
+
+            return await CrossConnectivity.Current.IsRemoteReachable(url);
+        }
+
     }
 }
