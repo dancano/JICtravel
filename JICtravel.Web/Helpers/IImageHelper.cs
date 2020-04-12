@@ -5,6 +5,7 @@ namespace JICtravel.Web.Helpers
 {
     public interface IImageHelper
     {
-        Task<string> UpLoadImageAsync(IFormFile imageFile, string folder);
+        Task<string> UploadImageAsync(IFormFile imageFile, string folder);
     }
+
 }

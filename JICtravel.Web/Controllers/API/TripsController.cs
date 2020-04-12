@@ -1,77 +1,80 @@
-﻿using JICtravel.Web.Data;
+﻿using JICtravel.Common.Models;
+using JICtravel.Web.Data;
 using JICtravel.Web.Data.Entities;
 using JICtravel.Web.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace JICtravel.Web.Controllers.API
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class TripsController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
         private readonly IConverterHelper _converterHelper;
 
-        public TripsController(DataContext context, IConverterHelper converterHelper)
+        public TripsController(DataContext context, IUserHelper userHelper, IConverterHelper converterHelper)
         {
             _context = context;
+            _userHelper = userHelper;
             _converterHelper = converterHelper;
         }
 
-        // GET: api/Trips
-        [HttpGet]
-        public IEnumerable<TripEntity> GetTrips()
+        [HttpPost]
+        [Route("GetUserTrips")]
+        public async Task<IActionResult> GetUserTrips([FromBody] TripRequest tripRequest)
         {
-            return _context.Trips;
-        }
-
-        // GET: api/Trips/5 CONSULTAR
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetTripEntity([FromRoute] int? id)
-        {
-            if (!ModelState.IsValid)
+            SlaveEntity slaveEntity = await _userHelper.GetUserAsync(tripRequest.UserId);
+            if (slaveEntity == null)
             {
-                return BadRequest(ModelState);
+                return BadRequest("User doesn't exists.");
             }
 
-            TripEntity tripEntity = await _context.Trips
-                .Include(t => t.Slave)
+            List<TripEntity> tripsUser = await _context.Trips
                 .Include(t => t.TripDetails)
                 .ThenInclude(t => t.ExpensiveType)
-                .Include(t => t.Slave)
-                .FirstOrDefaultAsync(t => t.Id == id);
+                .Where(t => t.Slave.Id == tripRequest.UserId.ToString())
+                .ToListAsync();
 
-            if (tripEntity == null)
-            {
-
-            }
-
-            return Ok(tripEntity);
+            return Ok(_converterHelper.ToTripResponse(tripsUser));
         }
 
-        // POST: api/Trips CREAR
+
         [HttpPost]
-        public async Task<IActionResult> PostTripEntity([FromBody] TripEntity tripEntity)
+        public async Task<IActionResult> PostTripEntity([FromBody] TripRequest tripRequest)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            SlaveEntity slaveEntity = await _userHelper.GetUserAsync(tripRequest.UserId);
+            if (slaveEntity == null)
+            {
+                return BadRequest("User doesn't exists.");
+            }
+
+            TripEntity tripEntity = new TripEntity
+            {
+                CityVisited = tripRequest.CityVisited,
+                StartDate = tripRequest.StartDate,
+                EndDate = tripRequest.EndDate,
+                Slave = slaveEntity,
+            };
 
             _context.Trips.Add(tripEntity);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetTripEntity", new { id = tripEntity.Id }, tripEntity);
-        }
-
-
-        private bool TripEntityExists(int id)
-        {
-            return _context.Trips.Any(e => e.Id == id);
+            return Ok(_converterHelper.ToTripResponse(tripEntity));
         }
     }
+
 }

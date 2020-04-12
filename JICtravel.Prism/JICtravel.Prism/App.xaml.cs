@@ -20,7 +20,7 @@ namespace JICtravel.Prism
         {
             SyncfusionLicenseProvider.RegisterLicense("MjM3OTczQDMxMzgyZTMxMmUzMGsxcUcrU0cyYTdXZDVqY3dUckdPQWRoWHdrUi8wak1mRHQvSUpQMU43N0k9");
             InitializeComponent();
-            await NavigationService.NavigateAsync("/JICtravelMasterDetailPage/NavigationPage/HomePage");
+            await NavigationService.NavigateAsync("/JICtravelMasterDetailPage/NavigationPage/LoginPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -33,6 +33,7 @@ namespace JICtravel.Prism
             containerRegistry.RegisterForNavigation<NewTripPage, NewTripPageViewModel>();
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
             containerRegistry.RegisterForNavigation<ReportPage, ReportPageViewModel>();
+            containerRegistry.RegisterForNavigation<TripDetailPage, TripDetailPageViewModel>();
         }
     }
 }

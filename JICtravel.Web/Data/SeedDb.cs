@@ -50,7 +50,7 @@ namespace JICtravel.Web.Data
             string phone,
             UserType userType)
         {
-            SlaveEntity user = await _userHelper.GetUserByEmailAsync(email);
+            SlaveEntity user = await _userHelper.GetUserAsync(email);
             if (user == null)
             {
                 user = new SlaveEntity

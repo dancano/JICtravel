@@ -7,7 +7,7 @@ namespace JICtravel.Web.Helpers
 {
     public class ImageHelper : IImageHelper
     {
-        public async Task<string> UpLoadImageAsync(IFormFile imageFile, string folder)
+        public async Task<string> UploadImageAsync(IFormFile imageFile, string folder)
         {
             string guid = Guid.NewGuid().ToString();
             string file = $"{guid}.jpg";
@@ -24,4 +24,5 @@ namespace JICtravel.Web.Helpers
             return $"~/images/{folder}/{file}";
         }
     }
+
 }

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="JICtravel.Prism.Views.TripDetailPage"
+             BackgroundColor="{StaticResource ColorBackgroud}"
+             Title="{Binding Title}">
+
+    <StackLayout Padding="5">
+        <StackLayout HorizontalOptions="Center" 
+                     Orientation="Horizontal">
+            <Label FontAttributes="Bold" 
+                   FontSize="Large"
+                   Text="City Visited:"/>
+            <Label FontAttributes="Bold" 
+                   FontSize="Large"
+                   Text="{Binding Trip.CityVisited, StringFormat='{0:N2}'}"/>
+        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" 
+                   Grid.Row="0"
+                   FontAttributes="Bold" 
+                   Text="Start Date"/>
+            <Label Grid.Column="1" 
+                   Grid.Row="0"
+                   Text="{Binding Trip.StartDate, StringFormat='{0:yyyy/MM/dd}'}"/>
+            <Label Grid.Column="0" 
+                   Grid.Row="1"
+                   FontAttributes="Bold" 
+                   Text="End Date"/>
+            <Label Grid.Column="1" 
+                   Grid.Row="1"
+                   Text="{Binding Trip.EndDateLocal, StringFormat='{0:yyyy/MM/dd}'}"/>
+            <CollectionView ItemsSource="{Binding Trip.tripDetails}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{Binding Expensive, StringFormat='{0:yyyy/MM/dd HH:mm}'}"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{Binding PicturePath, StringFormat='{0:N2}'}"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                    </DataTemplate>
+               </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </StackLayout>
+
+
+</ContentPage>
