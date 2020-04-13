@@ -22,12 +22,28 @@
                 <Image Grid.Row="0" Source="JICtravels.png" WidthRequest="250" HeightRequest="250" Margin="0,50,0,30"/>
 
                 <StackLayout Grid.Row="1" Padding="30,20">
-                    <Entry Placeholder="Email" PlaceholderColor="Black"/>
-                    <Entry Placeholder="Password" PlaceholderColor="Black"/>
-                    <Button Text="Log In" BackgroundColor="Black" BorderRadius="20" TextColor="#F2F2F2"/>
+                    <Entry Text="{Binding Email}"
+                           Keyboard="Email" 
+                           Placeholder="Email" 
+                           PlaceholderColor="Black"/>
+                    <Entry Text="{Binding Password}" 
+                           IsPassword="True" 
+                           Placeholder="Password" 
+                           PlaceholderColor="Black"/>
+                    <Button Command="{Binding LoginCommand}" 
+                            Text="Log In" 
+                            BackgroundColor="Black" 
+                            BorderRadius="20" 
+                            TextColor="#F2F2F2"/>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Forgot Password?"/>
-                        <Label Text="Sing Up" HorizontalOptions="EndAndExpand" FontAttributes="Bold"/>
+                        <Label BindingContext="{Binding RecoverPassword}"
+                               IsEnabled="{Binding IsEnabled}"
+                               Text="Forgot Password?"/>
+                        <Label BindingContext="{Binding SingUpCommand}" 
+                               IsEnabled="{Binding IsEnabled}"
+                               Text="Sing Up" 
+                               HorizontalOptions="EndAndExpand" 
+                               FontAttributes="Bold"/>
                     </StackLayout>
                     <StackLayout Grid.Row="2" HorizontalOptions="Center" Margin="0,0,0,50">
                         <Label Text="LogIn With" HorizontalOptions="Center"/>
@@ -38,8 +54,9 @@
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-                
+
             </Grid>
         </Grid>
     </ContentPage.Content>
+
 </ContentPage>

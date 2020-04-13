@@ -26,6 +26,8 @@ namespace JICtravel.Prism.ViewModels
             Title = "Trips of Slave";
         }
 
+       
+
         public bool IsRunning
         {
             get => _isRunning;

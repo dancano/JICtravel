@@ -1,4 +1,6 @@
-﻿using JICtravel.Common.Models;
+﻿using JICtravel.Common.Helpers;
+using JICtravel.Common.Models;
+using Newtonsoft.Json;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,14 +11,30 @@ namespace JICtravel.Prism.ViewModels
     public class JICtravelMasterDetailPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private SlaveResponse _user;
 
         public JICtravelMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
+            LoadUser();
             LoadMenus();
         }
 
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+
+        public SlaveResponse User
+        {
+            get => _user;
+            set => SetProperty(ref _user, value);
+        }
+        
+        private void LoadUser()
+        {
+            if (Settings.IsLogin)
+            {
+                User = JsonConvert.DeserializeObject<SlaveResponse>(Settings.User);
+            }
+        }
 
         private void LoadMenus()
         {

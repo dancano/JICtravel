@@ -24,7 +24,7 @@ namespace JICtravel.Web.Controllers.API
 
         // GET: api/Trips
         [HttpGet]
-        public IEnumerable<SlaveEntity> GetTrips()
+        public IEnumerable<SlaveEntity> GetSlaves()
         {
             return _context.Slaves;
         }
