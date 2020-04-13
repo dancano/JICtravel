@@ -1,4 +1,5 @@
-﻿using JICtravel.Common.Service;
+﻿using JICtravel.Common.Helpers;
+using JICtravel.Common.Service;
 using JICtravel.Prism.ViewModels;
 using JICtravel.Prism.Views;
 using Prism;
@@ -26,6 +27,7 @@ namespace JICtravel.Prism
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<IRegexHelper, RegexHelper>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
@@ -34,6 +36,7 @@ namespace JICtravel.Prism
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
             containerRegistry.RegisterForNavigation<ReportPage, ReportPageViewModel>();
             containerRegistry.RegisterForNavigation<TripDetailPage, TripDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
         }
     }
 }
