@@ -114,6 +114,27 @@ namespace JICtravel.Web.Helpers
         {
             return await _signInManager.CheckPasswordSignInAsync(user, password, false);
         }
+
+        public async Task<IdentityResult> ConfirmEmailAsync(SlaveEntity user, string token)
+        {
+            return await _userManager.ConfirmEmailAsync(user, token);
+        }
+
+        public async Task<string> GenerateEmailConfirmationTokenAsync(SlaveEntity user)
+        {
+            return await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        }
+
+        public async Task<string> GeneratePasswordResetTokenAsync(SlaveEntity user)
+        {
+            return await _userManager.GeneratePasswordResetTokenAsync(user);
+        }
+
+        public async Task<IdentityResult> ResetPasswordAsync(SlaveEntity user, string token, string password)
+        {
+            return await _userManager.ResetPasswordAsync(user, token, password);
+        }
+
     }
 
 }
