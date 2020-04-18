@@ -30,11 +30,6 @@ namespace JICtravel.Prism.ViewModels
             LoadTrips();
         }
 
-        private void LoadTrips()
-        {
-            throw new NotImplementedException();
-        }
-
         public bool IsRunning
         {
             get => _isRunning;
@@ -55,12 +50,9 @@ namespace JICtravel.Prism.ViewModels
             set => SetProperty(ref _trips, value);
         }
 
+        //public DelegateCommand CheckDocumentCommand => _checkDocumentCommand ?? (_checkDocumentCommand = new DelegateCommand(CheckDocumentAsync));
 
-        public string Document { get; set; }
-
-        public DelegateCommand CheckDocumentCommand => _checkDocumentCommand ?? (_checkDocumentCommand = new DelegateCommand(CheckDocumentAsync));
-
-        private async void CheckDocumentAsync()
+        private async void LoadTrips()
         {
             IsRunning = true;
             var url = App.Current.Resources["UrlAPI"].ToString();
@@ -72,17 +64,8 @@ namespace JICtravel.Prism.ViewModels
                 return;
             }
 
-            //var connection = await _apiService.CheckConnectionAsync(url);
-            //if (!connection)
-            //{
-            //    IsRunning = false;
-            //    await App.Current.MainPage.DisplayAlert("Error", "Check the internet connection.", "Accept");
-            //    return;
-            //}
-            var slave = JsonConvert.DeserializeObject<SlaveResponse>(Settings.User);
-            
-
-            Response response = await _apiService.GetTripAsync(Document, url, "api", "/Slaves");
+            var Slave = JsonConvert.DeserializeObject<SlaveResponse>(Settings.User);
+            Response response = await _apiService.GetTripAsync(Slave.Document, url, "api", "/Slaves");
             IsRunning = false;
 
 

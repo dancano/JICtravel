@@ -12,19 +12,7 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Document"
-                       VerticalOptions="Center"/>
-                <Entry HorizontalOptions="FillAndExpand" 
-                       Placeholder="Enter document..." 
-                       Text="{Binding Document}"
-                       VerticalOptions="Center"/>
-                <Button Command="{Binding CheckDocumentCommand}"
-                        Margin="10,0"
-                        Text="Check ID"
-                        TextColor="White"/>
-            </StackLayout>
-        
+            
             <StackLayout Orientation="Horizontal">
                 <Label Text="Number of trips:"/>
                 <Label Text="{Binding Slave.NumberOfTrips, StringFormat='{0:N0}'}"/>
