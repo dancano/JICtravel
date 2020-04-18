@@ -24,7 +24,7 @@ namespace JICtravel.Common.Models
         public string Password { get; set; }
 
         [Required]
-        public int UserTypeId { get; set; } // 0: Admin, 1:Slave
+        public int UserTypeId { get; set; } // 0: Slave, 1:Admin
 
         public byte[] PictureArray { get; set; }
 

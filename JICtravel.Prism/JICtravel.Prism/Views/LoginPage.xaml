@@ -34,7 +34,7 @@
                         <Button Text="Log In" 
                                 BackgroundColor="Black" 
                                 BorderRadius="20" 
-                                TextColor="#F2F2F2"
+                                TextColor="#118C76"
                                 Command="{Binding LoginCommand}"
                                 IsEnabled="{Binding IsEnabled}"/>
                         <StackLayout Orientation="Horizontal">

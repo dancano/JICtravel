@@ -12,38 +12,15 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-            
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Number of trips:"/>
-                <Label Text="{Binding Slave.NumberOfTrips, StringFormat='{0:N0}'}"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Slave:"/>
-                <Label Text="{Binding Slave.FullName, StringFormat='{0:N0}'}"/>
-            </StackLayout>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0"
-                       FontAttributes="Bold"
-                       Text="Start Date"/>
-                <Label Grid.Column="1"
-                       FontAttributes="Bold"
-                       Text="City Visited"/>
-            </Grid>
 
-            <CollectionView ItemsSource="{Binding Trips}">
+            <CollectionView ItemsSource="{Binding Trips}"
+                            SelectionMode="Single">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid Padding="10">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectTripCommand}"/>
                             </Grid.GestureRecognizers>
@@ -52,11 +29,16 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0"
-                                   Text="{Binding StartDateLocal, StringFormat='{0:yyyy/MM/dd HH:mm}'}"
+                                   Text="{Binding StartDateLocal, StringFormat='{0:yyyy/MM/dd}'}"
                                    VerticalOptions="Center"/>
                             <Label Grid.Column="1"
                                    Text="{Binding CityVisited, StringFormat='{0:N2}'}"
                                    VerticalOptions="Center"/>
+                            <Image Grid.Column="3" 
+                               Source="ic_more_vert.png" 
+                               Aspect="AspectFit"
+                               HeightRequest="60" 
+                               WidthRequest="60" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
