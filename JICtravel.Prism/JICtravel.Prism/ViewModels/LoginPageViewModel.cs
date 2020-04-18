@@ -1,18 +1,28 @@
-﻿using Prism.Commands;
+﻿using JICtravel.Common.Helpers;
+using JICtravel.Common.Models;
+using JICtravel.Common.Service;
+using Newtonsoft.Json;
+using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Essentials;
 
 namespace JICtravel.Prism.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
+        private readonly IApiService _apiService;
         private bool _isRunning;
         private bool _isEnabled;
         private string _password;
         private DelegateCommand _loginCommand;
         private DelegateCommand _registerCommand;
 
-        public LoginPageViewModel(INavigationService navigationService) : base(navigationService)
+        public LoginPageViewModel(INavigationService navigationService, IApiService apiService) 
+            : base(navigationService)
         {
+            _navigationService = navigationService;
+            _apiService = apiService;
             Title = "Log In";
             IsEnabled = true;
         }
@@ -61,7 +71,52 @@ namespace JICtravel.Prism.ViewModels
                 return;
             }
 
+            IsRunning = true;
+            IsEnabled = false;
 
+            string url = App.Current.Resources["UrlAPI"].ToString();
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                IsRunning = false;
+                await App.Current.MainPage.DisplayAlert("Error","You dn't have connection","Accept");
+                return;
+            }
+
+            TokenRequest request = new TokenRequest
+            {
+                Password = Password,
+                Username = Email
+            };
+
+            Response response = await _apiService.GetTokenAsync(url, "Account", "/CreateToken", request);
+
+            if (!response.IsSuccess)
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                await App.Current.MainPage.DisplayAlert("Error", "This user don't exist", "Accept");
+                Password = string.Empty;
+                return;
+            }
+
+            TokenResponse token = (TokenResponse)response.Result;
+            EmailRequest emailRequest = new EmailRequest
+            {
+                Email = Email
+            };
+
+            Response response2 = await _apiService.GetUserByEmail(url, "api", "/Account/GetUserByEmail", "bearer", token.Token, emailRequest);
+            SlaveResponse userResponse = (SlaveResponse)response2.Result;
+
+            Settings.User = JsonConvert.SerializeObject(userResponse);
+            Settings.Token = JsonConvert.SerializeObject(token);
+            Settings.IsLogin = true;
+
+            IsRunning = false;
+            IsEnabled = true;
+
+            await _navigationService.NavigateAsync("/JICtravelMasterDetailPage/NavigationPage/HomePage");
+            Password = string.Empty;
         }
 
         private void RegisterAsync()

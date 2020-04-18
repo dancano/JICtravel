@@ -1,4 +1,5 @@
-﻿using JICtravel.Common.Models;
+﻿using JICtravel.Common.Helpers;
+using JICtravel.Common.Models;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -18,7 +19,18 @@ namespace JICtravel.Prism.ViewModels
 
         private async void SelectMenuAsync()
         {
+            if (PageName == "LoginPage" && Settings.IsLogin)
+            {
+                Settings.IsLogin = false;
+                Settings.User = null;
+                Settings.Token = null;
+                
+                await _navigationService.NavigateAsync("LoginPage");
+            }
+            else
+            {
             await _navigationService.NavigateAsync($"/JICtravelMasterDetailPage/NavigationPage/{PageName}");
+            }
         }
     }
 }
