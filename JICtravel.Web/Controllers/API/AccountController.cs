@@ -7,7 +7,8 @@ using JICtravel.Common.Models;
 using JICtravel.Web.Data;
 using JICtravel.Web.Data.Entities;
 using JICtravel.Web.Helpers;
-
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace JICtravel.Web.Controllers.API
 {
@@ -130,6 +131,84 @@ namespace JICtravel.Web.Controllers.API
             {
                 IsSuccess = true,
                 Message = "Recover Success"
+            });
+        }
+
+        [HttpPut]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> PutUser([FromBody] SlaveRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            SlaveEntity userEntity = await _userHelper.GetUserAsync(request.Email);
+            if (userEntity == null)
+            {
+                return BadRequest("User don't exists");
+            }
+
+            string picturePath = userEntity.PicturePath;
+            if (request.PictureArray != null && request.PictureArray.Length > 0)
+            {
+                picturePath = _imageHelper.UploadImage(request.PictureArray, "Users");
+            }
+
+            userEntity.Document = request.Document;
+            userEntity.FirstName = request.FirstName;
+            userEntity.LastName = request.LastName;
+            userEntity.PicturePath = picturePath;
+
+            IdentityResult respose = await _userHelper.UpdateUserAsync(userEntity);
+            if (!respose.Succeeded)
+            {
+                return BadRequest(respose.Errors.FirstOrDefault().Description);
+            }
+
+            SlaveEntity updatedUser = await _userHelper.GetUserAsync(request.Email);
+            return Ok(updatedUser);
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost]
+        [Route("ChangePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Bad request",
+                    Result = ModelState
+                });
+            }
+
+            SlaveEntity user = await _userHelper.GetUserAsync(request.Email);
+            if (user == null)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "User not found"
+                });
+            }
+
+            IdentityResult result = await _userHelper.ChangePasswordAsync(user, request.OldPassword, request.NewPassword);
+            if (!result.Succeeded)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = result.Errors.FirstOrDefault().Description
+                });
+            }
+
+            return Ok(new Response
+            {
+                IsSuccess = true,
+                Message = "Change Password Success"
             });
         }
 
