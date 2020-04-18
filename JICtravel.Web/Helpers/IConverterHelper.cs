@@ -11,6 +11,7 @@ namespace JICtravel.Web.Helpers
         TripResponse ToTripResponse(TripEntity tripEntity);
 
         List<TripResponse> ToTripResponse(List<TripEntity> tripEntity);
+
     }
 
 }
