@@ -76,5 +76,4 @@ namespace JICtravel.Web.Controllers.API
             return Ok(_converterHelper.ToTripResponse(tripEntity));
         }
     }
-
 }
