@@ -35,6 +35,11 @@ namespace JICtravel.Web.Helpers
         Task<string> GenerateEmailConfirmationTokenAsync(SlaveEntity user);
 
         Task<IdentityResult> ConfirmEmailAsync(SlaveEntity user, string token);
+
+        Task<string> GeneratePasswordResetTokenAsync(SlaveEntity user);
+
+        Task<IdentityResult> ResetPasswordAsync(SlaveEntity user, string token, string password);
+
     }
 
 }

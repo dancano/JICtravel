@@ -96,6 +96,42 @@ namespace JICtravel.Web.Controllers.API
                 Message = "Send message for confirm Email"
             });
         }
-    }
 
+        [HttpPost]
+        [Route("RecoverPassword")]
+        public async Task<IActionResult> RecoverPassword([FromBody] EmailRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Bad request",
+                    Result = ModelState
+                });
+            }
+
+            SlaveEntity user = await _userHelper.GetUserAsync(request.Email);
+            if (user == null)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Email don't exists"
+                });
+            }
+
+            string myToken = await _userHelper.GeneratePasswordResetTokenAsync(user);
+            string link = Url.Action("ResetPassword", "Account", new { token = myToken }, protocol: HttpContext.Request.Scheme);
+            _mailHelper.SendMail(request.Email, "Recover your password", $"<h1>Recover Password</h1>" +
+                $"For recover your pass clic here</br></br><a href = \"{link}\"> Please Hurry Up</a>");
+
+            return Ok(new Response
+            {
+                IsSuccess = true,
+                Message = "Recover Success"
+            });
+        }
+
+    }
 }
