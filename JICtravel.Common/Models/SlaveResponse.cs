@@ -26,5 +26,10 @@ namespace JICtravel.Common.Models
 
         public string PicturePath { get; set; }
 
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+        ? "https://jictravel.azurewebsites.net//images/noimage.png"
+        : $"https://jictravel.azurewebsites.net{PicturePath.Substring(1)}";
+
+
     }
 }
