@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JICtravel.Common.Models
 {
-    public class UserRequest
+    public class SlaveRequest
     {
         [Required]
         public string Document { get; set; }

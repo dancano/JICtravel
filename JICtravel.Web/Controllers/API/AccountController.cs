@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
+using JICtravel.Common.Enums;
+using JICtravel.Common.Models;
 using JICtravel.Web.Data;
+using JICtravel.Web.Data.Entities;
 using JICtravel.Web.Helpers;
-using Microsoft.AspNetCore.Mvc;
+
 
 namespace JICtravel.Web.Controllers.API
 {
     [Route("api/[Controller]")]
     public class AccountController : ControllerBase
     {
-        /*private readonly DataContext _dataContext;
+        private readonly DataContext _dataContext;
         private readonly IUserHelper _userHelper;
         private readonly IMailHelper _mailHelper;
         private readonly IImageHelper _imageHelper;
@@ -29,7 +32,7 @@ namespace JICtravel.Web.Controllers.API
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostUser([FromBody] UserRequest request)
+        public async Task<IActionResult> PostUser([FromBody] SlaveRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -41,16 +44,13 @@ namespace JICtravel.Web.Controllers.API
                 });
             }
 
-            CultureInfo cultureInfo = new CultureInfo(request.CultureInfo);
-            Resource.Culture = cultureInfo;
-
-            UserEntity user = await _userHelper.GetUserAsync(request.Email);
+            SlaveEntity user = await _userHelper.GetUserAsync(request.Email);
             if (user != null)
             {
                 return BadRequest(new Response
                 {
                     IsSuccess = false,
-                    Message = Resource.UserAlreadyExists
+                    Message = "User exist"
                 });
             }
 
@@ -60,17 +60,15 @@ namespace JICtravel.Web.Controllers.API
                 picturePath = _imageHelper.UploadImage(request.PictureArray, "Users");
             }
 
-            user = new UserEntity
+            user = new SlaveEntity
             {
-                Address = request.Address,
                 Document = request.Document,
                 Email = request.Email,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                PhoneNumber = request.Phone,
                 UserName = request.Email,
                 PicturePath = picturePath,
-                UserType = request.UserTypeId == 1 ? UserType.User : UserType.Driver
+                UserType = request.UserTypeId == 1 ? UserType.Admin : UserType.Slave
             };
 
             IdentityResult result = await _userHelper.AddUserAsync(user, request.Password);
@@ -79,7 +77,7 @@ namespace JICtravel.Web.Controllers.API
                 return BadRequest(result.Errors.FirstOrDefault().Description);
             }
 
-            UserEntity userNew = await _userHelper.GetUserAsync(request.Email);
+            SlaveEntity userNew = await _userHelper.GetUserAsync(request.Email);
             await _userHelper.AddUserToRoleAsync(userNew, user.UserType.ToString());
 
             string myToken = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
@@ -89,15 +87,15 @@ namespace JICtravel.Web.Controllers.API
                 token = myToken
             }, protocol: HttpContext.Request.Scheme);
 
-            _mailHelper.SendMail(request.Email, Resource.EmailConfirmationSubject, $"<h1>{Resource.EmailConfirmationSubject}</h1>" +
-                $"{Resource.EmailConfirmationBody}</br></br><a href = \"{tokenLink}\">{Resource.ConfirmEmail}</a>");
+            _mailHelper.SendMail(request.Email, "Email Confimation", $"<h1>Email</h1>" +
+                $"Welcome to Just In Case Travels</br></br><a href = \"{tokenLink}\"> Please clic Here for Confirm Email</a>");
 
             return Ok(new Response
             {
                 IsSuccess = true,
-                Message = Resource.EmailConfirmationSent
+                Message = "Send message for confirm Email"
             });
-        }*/
+        }
     }
 
 }
