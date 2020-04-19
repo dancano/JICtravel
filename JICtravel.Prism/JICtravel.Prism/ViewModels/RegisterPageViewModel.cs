@@ -1,6 +1,8 @@
 ﻿using JICtravel.Common.Helpers;
 using JICtravel.Common.Models;
 using JICtravel.Common.Service;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
@@ -15,6 +17,7 @@ namespace JICtravel.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IRegexHelper _regexHelper;
         private readonly IApiService _apiService;
+        private readonly IFilesHelper _filesHelper;
         private ImageSource _image;
         private readonly SlaveRequest _slave;
         private Role _role;
@@ -22,15 +25,20 @@ namespace JICtravel.Prism.ViewModels
         private bool _isRunning;
         private bool _isEnabled;
         private DelegateCommand _registerCommand;
+        private MediaFile _file;
+        private DelegateCommand _changeImageCommand;
+
 
         public RegisterPageViewModel(
             INavigationService navigationService,
             IRegexHelper regexHelper,
-            IApiService apiService) : base(navigationService)
+            IApiService apiService,
+            IFilesHelper filesHelper) : base(navigationService)
         {
             _navigationService = navigationService;
             _regexHelper = regexHelper;
             _apiService = apiService;
+            _filesHelper = filesHelper;
             Title = "Register";
             Image = App.Current.Resources["UrlNoImage"].ToString();
             IsEnabled = true;
@@ -39,6 +47,8 @@ namespace JICtravel.Prism.ViewModels
         }
 
         public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(RegisterAsync));
+
+        public DelegateCommand ChangeImageCommand => _changeImageCommand ?? (_changeImageCommand = new DelegateCommand(ChangeImageAsync));
 
         public ImageSource Image
         {
@@ -93,6 +103,13 @@ namespace JICtravel.Prism.ViewModels
                 return;
             }
 
+            byte[] imageArray = null;
+            if (_file != null)
+            {
+                imageArray = _filesHelper.ReadFully(_file.GetStream());
+            }
+
+            Slave.PictureArray = imageArray;
             Slave.UserTypeId = Role.Id;
             Response response = await _apiService.RegisterUserAsync(url, "/api", "/Account", Slave);
             IsRunning = false;
@@ -162,7 +179,49 @@ namespace JICtravel.Prism.ViewModels
 
             return true;
         }
+
+        private async void ChangeImageAsync()
+        {
+            await CrossMedia.Current.Initialize();
+
+            string source = await Application.Current.MainPage.DisplayActionSheet(
+                "PictureSource",
+                "Cancel",
+                null,
+                "FromGallery",
+                "FromCamera");
+
+            if (source == "Cancel")
+            {
+                _file = null;
+                return;
+            }
+
+            if (source == "FromCamera")
+            {
+                _file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Sample",
+                        Name = "test.jpg",
+                        PhotoSize = PhotoSize.Small,
+                    }
+                );
+            }
+            else
+            {
+                _file = await CrossMedia.Current.PickPhotoAsync();
+            }
+
+            if (_file != null)
+            {
+                Image = ImageSource.FromStream(() =>
+                {
+                    System.IO.Stream stream = _file.GetStream();
+                    return stream;
+                });
+            }
+        }
+
     }
-
-
 }
