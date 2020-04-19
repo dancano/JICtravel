@@ -18,7 +18,7 @@ namespace JICtravel.Prism.ViewModels
         private readonly IApiService _apiService;
         private readonly INavigationService _navigationService;
         private SlaveResponse _slave;
-        private DelegateCommand _checkDocumentCommand;
+        //private DelegateCommand _checkDocumentCommand;
 
         public HomePageViewModel(
             INavigationService navigationService,

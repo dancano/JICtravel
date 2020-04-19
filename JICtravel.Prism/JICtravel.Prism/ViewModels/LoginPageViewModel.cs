@@ -1,6 +1,7 @@
 ﻿using JICtravel.Common.Helpers;
 using JICtravel.Common.Models;
 using JICtravel.Common.Service;
+using JICtravel.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
@@ -122,8 +123,9 @@ namespace JICtravel.Prism.ViewModels
             Password = string.Empty;
         }
 
-        private void RegisterAsync()
+        private async void RegisterAsync()
         {
+            await _navigationService.NavigateAsync(nameof(RegisterPage));
         }
     }
 

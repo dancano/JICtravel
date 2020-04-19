@@ -38,8 +38,18 @@
                                 Command="{Binding LoginCommand}"
                                 IsEnabled="{Binding IsEnabled}"/>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Forgot Password?"/>
-                            <Label Text="Sing Up" HorizontalOptions="EndAndExpand" FontAttributes="Bold"/>
+                            <Button Text="Forgot Password?"
+                                    BorderRadius="40" 
+                                    TextColor="#118C76"
+                                    Command="{Binding RecoverPasswordCommand}"
+                                    Padding="10"
+                                    IsEnabled="True"/>
+                            <Button Text="SingUp"
+                                    BorderRadius="40" 
+                                    TextColor="#118C76"
+                                    Command="{Binding RegisterCommand}"
+                                    IsEnabled="True"
+                                    HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout Grid.Row="2" HorizontalOptions="Center" Margin="0,0,0,50">
                             <Label Text="LogIn With" HorizontalOptions="Center"/>
