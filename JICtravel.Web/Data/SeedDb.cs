@@ -101,22 +101,22 @@ namespace JICtravel.Web.Data
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 580000,
-                            PicturePath = "$wwwroot/images/Invoice/Hotel 1.jpg",
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Hotel")
+                            PicturePath = $"~/images/Invoice/Hotel 1.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 390000,
-                            PicturePath = "$$wwwroot/images/Invoice/Alimento 1.jpg",
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Alimentacion")
+                            PicturePath = $"~/images/Invoice/Alimento 1.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 60000,
-                            PicturePath = "$$wwwroot/images/Invoice/Transporte 1.jpg",
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Transporte")
+                            PicturePath = $"~/images/Invoice/Transporte 1.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
                         },
                     }
 
@@ -134,22 +134,22 @@ namespace JICtravel.Web.Data
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 250000,
-                            PicturePath = "$wwwroot/images/Invoice/Hotel 2.jpg",
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Hotel")
+                            PicturePath = $"~/images/Invoice/Hotel 2.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 100000,
-                            PicturePath = "$wwwroot/images/Invoice/Alimento 2.jpg",
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Alimentacion")
+                            PicturePath = $"~/images/Invoice/Alimento 2.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 35000,
-                            PicturePath = "$wwwroot/images/Invoice/Transporte 2.jpg",
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "transporte")
+                            PicturePath = $"~/images/Invoice/Transporte 2.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
                         }
                     }
 
@@ -167,22 +167,22 @@ namespace JICtravel.Web.Data
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 250000,
-                            PicturePath = "$wwwroot/images/Invoice/Hotel 3.jpg",
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Hotel")
+                            PicturePath = $"~/images/Invoice/Hotel 3.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 100000,
-                            PicturePath = "$wwwroot/images/Invoice/Alimento 3.jpg",
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "Alimentacion")
+                            PicturePath = $"~/images/Invoice/Alimento 3.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
                         },
                         new TripDetailEntity
                         {
                             StartDate = DateTime.UtcNow,
                             Expensive = 35000,
-                            PicturePath = "$wwwroot/images/Invoice/Transporte 3.jpg",
-                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault(et => et.ExpensiveType == "transporte")
+                            PicturePath = $"~/images/Invoice/Transporte 3.jpg",
+                            ExpensiveType = _dataContext.ExpensivesType.FirstOrDefault()
                         }
                     }
 

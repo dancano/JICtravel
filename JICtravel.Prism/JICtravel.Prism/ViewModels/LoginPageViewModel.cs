@@ -18,6 +18,7 @@ namespace JICtravel.Prism.ViewModels
         private string _password;
         private DelegateCommand _loginCommand;
         private DelegateCommand _registerCommand;
+        private DelegateCommand _recoverPasswordCommand;
 
         public LoginPageViewModel(INavigationService navigationService, IApiService apiService) 
             : base(navigationService)
@@ -32,6 +33,7 @@ namespace JICtravel.Prism.ViewModels
 
         public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(RegisterAsync));
 
+        public DelegateCommand RecoverPasswordCommand => _recoverPasswordCommand ?? (_recoverPasswordCommand = new DelegateCommand(RecoverPasswordAsync));
         public bool IsRunning
         {
             get => _isRunning;
@@ -127,6 +129,12 @@ namespace JICtravel.Prism.ViewModels
         {
             await _navigationService.NavigateAsync(nameof(RegisterPage));
         }
+
+        private async void RecoverPasswordAsync()
+        {
+            await _navigationService.NavigateAsync(nameof(RememberPasswordPage));
+        }
+
     }
 
 }

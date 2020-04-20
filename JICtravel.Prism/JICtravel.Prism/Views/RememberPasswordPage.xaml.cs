@@ -2,9 +2,9 @@
 
 namespace JICtravel.Prism.Views
 {
-    public partial class ModifyUserPage : ContentPage
+    public partial class RememberPasswordPage : ContentPage
     {
-        public ModifyUserPage()
+        public RememberPasswordPage()
         {
             InitializeComponent();
         }

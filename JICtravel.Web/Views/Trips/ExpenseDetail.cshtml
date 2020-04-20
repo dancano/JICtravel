@@ -37,13 +37,11 @@
                     <td>
                         @if (!string.IsNullOrEmpty(item.PicturePath))
                         {
-                            <img src="@Url.Content(item.PicturePath)" alt="Image"/>
+                            <img src="@Url.Content(item.PicturePath)" alt="Image" style="width:100px;height:100px;max-width: 100%; height: auto;" />
                         }
-                    </td>
-                    <td>
-                        <a asp-action="Index">Back to List</a>
                     </td>
                 </tr>
             }
         </tbody>
+
     </table>
