@@ -2,9 +2,71 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="JICtravel.Prism.Views.NewTripPage"
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
-  
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="Start Date"
+                                   VerticalOptions="Center"/>
+                    <DatePicker Grid.Row="0"
+                                   Grid.Column="1"
+                                   Date="{Binding StartDate}"/>
+
+                    <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="End Date"
+                                   VerticalOptions="Center"/>
+                    <DatePicker Grid.Row="1"
+                                   Grid.Column="1"
+                                   Date="{Binding EndDate}"/>
+
+                    <Label Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="City Visited"
+                                   VerticalOptions="Center"/>
+                    <Entry Grid.Row="2"
+                                   Grid.Column="1"
+                                   Placeholder="City Visited"
+                                   Text="{Binding CityVisited}"/>
+                </Grid>
+            <StackLayout>
+                <Button Padding="30" Text="Add Trip" 
+                                BackgroundColor="#118C76" 
+                                TextColor="#011F26"
+                                BorderRadius="20" 
+                                Command="{Binding AddTripCommand}"
+                                IsEnabled="{Binding IsEnabled}"/>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator AnimationType="Globe" 
+                                           AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                       AbsoluteLayout.LayoutFlags="All"
+                	                       BackgroundColor="{StaticResource ColorPrimary}"
+                	                       HorizontalOptions="Center"
+                	                       TextColor="{StaticResource ColorFontInverse}"
+                	                       IsVisible="{Binding IsRunning}"
+                	                       Title="Loading..."
+                	                       VerticalOptions="Center"
+                	                       ViewBoxWidth="80"
+                	                       ViewBoxHeight="80" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
 </ContentPage>

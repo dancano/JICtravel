@@ -7,7 +7,12 @@ using System.Linq;
 namespace JICtravel.Web.Data.Entities
 {
     public class SlaveEntity : IdentityUser
-    {
+    {   
+        public string GetId()
+        {
+            return Id;
+        }
+
         [Display(Name = "Document")]
         [MaxLength(20, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]

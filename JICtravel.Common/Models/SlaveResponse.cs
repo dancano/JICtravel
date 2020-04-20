@@ -6,6 +6,8 @@ namespace JICtravel.Common.Models
 {
     public class SlaveResponse
     {
+        public string Id { get; set; }
+
         public string Document { get; set; }
 
         public string FirstName { get; set; }

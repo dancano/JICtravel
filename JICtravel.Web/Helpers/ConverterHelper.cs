@@ -10,7 +10,8 @@ namespace JICtravel.Web.Helpers
         public SlaveResponse ToSlaveResponse(SlaveEntity slaveEntity)
         {
             return new SlaveResponse
-            {
+            {   
+                Id = slaveEntity.Id,
                 Document = slaveEntity.Document,
                 FirstName = slaveEntity.FirstName,
                 LastName = slaveEntity.LastName,
