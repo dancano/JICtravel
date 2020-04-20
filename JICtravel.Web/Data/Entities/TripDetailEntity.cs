@@ -17,7 +17,7 @@ namespace JICtravel.Web.Data.Entities
         public decimal Expensive { get; set; }
 
         [Display(Name = "Invoice Picture")]
-        public string PicturePath { get; set; }
+        public string PicturePathExpense { get; set; }
 
         public TripEntity Trips { get; set; }
 

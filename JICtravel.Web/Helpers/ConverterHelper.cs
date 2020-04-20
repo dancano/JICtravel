@@ -28,7 +28,7 @@ namespace JICtravel.Web.Helpers
                         Id = td.Id,
                         StartDate = td.StartDate,
                         Expensive = td.Expensive,
-                        PicturePath = td.PicturePath
+                        PicturePathExpense = td.PicturePathExpense
                     }).ToList()
                 }).ToList()
             };
@@ -47,7 +47,7 @@ namespace JICtravel.Web.Helpers
                     Id = td.Id,
                     StartDate = td.StartDate,
                     Expensive = td.Expensive,
-                    PicturePath = td.PicturePath
+                    PicturePathExpense = td.PicturePathExpense
                 }).ToList(),
             };
         }
@@ -64,9 +64,20 @@ namespace JICtravel.Web.Helpers
                 {
                     StartDate = td.StartDate,
                     Expensive = td.Expensive,
-                    PicturePath = td.PicturePath
+                    PicturePathExpense = td.PicturePathExpense
                 }).ToList()
             }).ToList();
+        }
+
+        public TripDetailResponse ToExpenseResponse(TripDetailEntity tripDetailEntity)
+        {
+            return new TripDetailResponse
+            {
+                Id = tripDetailEntity.Id,
+                StartDate = tripDetailEntity.StartDate,
+                PicturePathExpense = tripDetailEntity.PicturePathExpense,
+                Expensive = tripDetailEntity.Expensive,
+            };
         }
     }
 }

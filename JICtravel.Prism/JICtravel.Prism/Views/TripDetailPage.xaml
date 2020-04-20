@@ -19,13 +19,11 @@
         </StackLayout>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Column="0" 
@@ -42,7 +40,8 @@
             <Label Grid.Column="1" 
                    Grid.Row="1"
                    Text="{Binding Trip.EndDateLocal, StringFormat='{0:yyyy/MM/dd}'}"/>
-            <CollectionView ItemsSource="{Binding Trip.tripDetails}">
+        </Grid>
+        <CollectionView ItemsSource="{Binding Trip.tripDetails}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
@@ -50,20 +49,27 @@
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0"
-                                   Text="{Binding Expensive, StringFormat='{0:yyyy/MM/dd HH:mm}'}"
-                                   VerticalOptions="Center"/>
+                            <Image Grid.Column="0"
+                                   Source="{Binding PictureFullPathExpense}"/>
                             <Label Grid.Column="1"
-                                   Text="{Binding PicturePath, StringFormat='{0:N2}'}"
+                                   Text="{Binding Expensive}"
                                    VerticalOptions="Center"/>
-                        </Grid>
+                            <Label Grid.RowSpan="1"
+                                   Text="{Binding expensiveTypes}"
+                                   VerticalOptions="Center"/>
+                    </Grid>
                     </DataTemplate>
-               </CollectionView.ItemTemplate>
+                </CollectionView.ItemTemplate>
             </CollectionView>
-        </Grid>
+        <Button Text="Add New Expense"
+                Command="{Binding RegisterCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                BackgroundColor="#118C76" 
+                TextColor="#011F26"/>
     </StackLayout>
 
 

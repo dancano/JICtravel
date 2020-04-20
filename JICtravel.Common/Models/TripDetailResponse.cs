@@ -5,7 +5,6 @@ namespace JICtravel.Common.Models
 {
     public class TripDetailResponse
     {
-
         public int Id { get; set; }
 
         public DateTime StartDate { get; set; }
@@ -14,9 +13,13 @@ namespace JICtravel.Common.Models
 
         public decimal Expensive { get; set; }
 
-        public string PicturePath { get; set; }
+        public string PicturePathExpense { get; set; }
 
-        public List<ExpensiveTypeResponse> expensiveTypes { get; set; }
+        public string PictureFullPathExpense => string.IsNullOrEmpty(PicturePathExpense)
+        ? "https://jictravelweb.azurewebsites.net//images/noimage.png"
+        : $"https://jictravelweb.azurewebsites.net{PicturePathExpense.Substring(1)}";
+
+        public ExpensiveTypeResponse expensiveTypes { get; set; }
 
     }
 }

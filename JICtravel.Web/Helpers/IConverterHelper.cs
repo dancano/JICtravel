@@ -12,6 +12,7 @@ namespace JICtravel.Web.Helpers
 
         List<TripResponse> ToTripResponse(List<TripEntity> tripEntity);
 
+        TripDetailResponse ToExpenseResponse(TripDetailEntity tripDetailEntity);
     }
 
 }

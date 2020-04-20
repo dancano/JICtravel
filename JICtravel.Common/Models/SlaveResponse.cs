@@ -1,4 +1,4 @@
-﻿using JICtravel.Common.Enums;
+﻿    using JICtravel.Common.Enums;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,8 +29,8 @@ namespace JICtravel.Common.Models
         public string PicturePath { get; set; }
 
         public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
-        ? "https://jictravel.azurewebsites.net//images/noimage.png"
-        : $"https://jictravel.azurewebsites.net{PicturePath.Substring(1)}";
+        ? "https://jictravelweb.azurewebsites.net//images/noimage.png"
+        : $"https://jictravelweb.azurewebsites.net{PicturePath.Substring(1)}";
 
 
     }

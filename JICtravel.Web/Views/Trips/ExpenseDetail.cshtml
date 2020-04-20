@@ -15,7 +15,7 @@
                     @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().Expensive)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().PicturePath)
+                    @Html.DisplayNameFor(model => model.TripDetails.FirstOrDefault().PicturePathExpense)
                 </th>
 
                 <th></th>
@@ -35,9 +35,9 @@
                         @Html.DisplayFor(modelItem => item.Expensive)
                     </td>
                     <td>
-                        @if (!string.IsNullOrEmpty(item.PicturePath))
+                        @if (!string.IsNullOrEmpty(item.PicturePathExpense))
                         {
-                            <img src="@Url.Content(item.PicturePath)" alt="Image" style="width:100px;height:100px;max-width: 100%; height: auto;" />
+                            <img src="@Url.Content(item.PicturePathExpense)" alt="Image" style="width:100px;height:100px;max-width: 100%; height: auto;" />
                         }
                     </td>
                 </tr>

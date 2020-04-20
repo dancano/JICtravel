@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,12 +20,18 @@ namespace JICtravel.Web.Controllers.API
         private readonly DataContext _context;
         private readonly IUserHelper _userHelper;
         private readonly IConverterHelper _converterHelper;
+        private readonly IImageHelper _imageHelper;
 
-        public TripsController(DataContext context, IUserHelper userHelper, IConverterHelper converterHelper)
+        public TripsController(
+            DataContext context,
+            IImageHelper imageHelper,
+            IUserHelper userHelper,
+            IConverterHelper converterHelper)
         {
             _context = context;
             _userHelper = userHelper;
             _converterHelper = converterHelper;
+            _imageHelper = imageHelper;
         }
 
         [HttpPost]
@@ -74,6 +79,59 @@ namespace JICtravel.Web.Controllers.API
             _context.Trips.Add(tripEntity);
             await _context.SaveChangesAsync();
             return Ok(_converterHelper.ToTripResponse(tripEntity));
+        }
+
+        [HttpPost]
+        [Route("GetExpensesTrip")]
+        public async Task<IActionResult> GetExpensesTrip([FromBody] TripDetailRequest tripDetailRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            List<TripEntity> ExpenseTripUser = await _context.Trips
+                .Include(t => t.TripDetails)
+                .ThenInclude(t => t.ExpensiveType)
+                .Where(t => t.Id == tripDetailRequest.TripId)
+                .ToListAsync();
+
+            return Ok(_converterHelper.ToTripResponse(ExpenseTripUser));
+        }
+
+        [HttpPost]
+        [Route("PostExpensesTrip")]
+        public async Task<IActionResult> PostExpensesTrip([FromBody] TripDetailRequest tripDetailRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            TripEntity tripEntity = await _context.Trips
+                .FirstOrDefaultAsync(d => d.Id == tripDetailRequest.TripId);
+
+            ExpensiveTypeEntity expensiveType = await _context.ExpensivesType
+                .FirstOrDefaultAsync(d => d.Id == tripDetailRequest.ExpensiveTypeId);
+
+            string picturePathExpense = string.Empty;
+            if (tripDetailRequest.PictureArrayExpense != null && tripDetailRequest.PictureArrayExpense.Length > 0)
+            {
+                picturePathExpense = _imageHelper.UploadImage(tripDetailRequest.PictureArrayExpense, "Invoice");
+            }
+
+            TripDetailEntity tripDetailEntity = new TripDetailEntity
+            {
+                StartDate = tripDetailRequest.StartDate,
+                Expensive = tripDetailRequest.Expensive,
+                Trips = tripEntity,
+                ExpensiveType = expensiveType,
+                PicturePathExpense = picturePathExpense
+            };
+
+            _context.TripDetails.Add(tripDetailEntity);
+            await _context.SaveChangesAsync();
+           return Ok(_converterHelper.ToExpenseResponse(tripDetailEntity));
         }
     }
 }

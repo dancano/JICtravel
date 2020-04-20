@@ -10,19 +10,15 @@ namespace JICtravel.Common.Models
         [Required]
         public int TripId { get; set; }
 
-        [DataType(DataType.DateTime)]
-        [Display(Name = "Start Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
         public DateTime StartDate { get; set; }
 
         public DateTime StartDateLocal => StartDate.ToLocalTime();
 
         public decimal Expensive { get; set; }
 
-        public decimal ExpensiveTypeId { get; set; }
+        public int ExpensiveTypeId { get; set; }
 
-        [Display(Name = "Invoice Picture")]
-        public string PicturePath { get; set; }
+        public byte[] PictureArrayExpense { get; set; }
 
     }
 }
