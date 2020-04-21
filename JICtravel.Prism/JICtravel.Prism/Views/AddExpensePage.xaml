@@ -37,21 +37,26 @@
                             <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
                         </ffimageloading:CachedImage.GestureRecognizers>
                     </ffimageloading:CachedImage>
-                    <StackLayout Grid.Row="1" Padding="30,20">
-                        <Label Text="Invoice Picture"/>
-                        
+                    <StackLayout Grid.Row="1" Padding="40,20">
+                        <Label FontAttributes="Bold" FontSize="25" HorizontalTextAlignment="Center" Text="Invoice Picture"/>
+                        <Label Text=""/>
+
+                        <Label Text="Start Date"/>
                         <DatePicker Date="{Binding StartDate}"/>
-                        
+
+                        <Label Text="Expense"/>
                         <Entry Placeholder="Expense" 
                                PlaceholderColor="Black"
                                Text="{Binding Expense}"/>
 
+                        <Label Text=""/>
                         <Button Text="Add Expense" 
                                 BackgroundColor="#118C76" 
                                 TextColor="#011F26"
                                 BorderRadius="20" 
                                 Command="{Binding AddExpenseCommand}"
                                 IsEnabled="{Binding IsEnabled}"/>
+                        <Label Text=""/>
                     </StackLayout>
 
                 </Grid>

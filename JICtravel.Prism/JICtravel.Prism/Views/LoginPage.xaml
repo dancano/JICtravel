@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="JICtravel.Prism.Views.LoginPage"
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
@@ -31,12 +32,25 @@
                                PlaceholderColor="Black"
                                Text="{Binding Password}"
                                IsPassword="True"/>
-                        <Button Text="Log In" 
-                                BackgroundColor="#118C76" 
-                                TextColor="#011F26"
-                                BorderRadius="20" 
-                                Command="{Binding LoginCommand}"
-                                IsEnabled="{Binding IsEnabled}"/>
+                        <buttons:SfButton
+                                     Command="{Binding LoginCommand}"
+                                     IsEnabled="{Binding IsEnabled}"
+                                     HeightRequest="50"
+                                     WidthRequest="200"
+                                     VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand"
+                                     CornerRadius="25"
+                                     HasShadow="True"
+                                     BorderWidth="1"
+                                     BorderColor="Gray"
+                                     BackgroundColor="#118C76"
+                                     ImageSource="Airplane.png"
+                                     ShowIcon="True"
+                                     ImageWidth="100"
+                                     ImageAlignment="Start"
+                                     FontSize="18"
+                                     Text="LogIn"/>
+                        
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Forgot Password?"
                                     TextColor="#118C76"

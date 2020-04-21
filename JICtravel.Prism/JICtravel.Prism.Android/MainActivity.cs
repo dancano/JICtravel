@@ -4,6 +4,7 @@ using Android.OS;
 using Prism;
 using Prism.Ioc;
 using Syncfusion.SfBusyIndicator.XForms.Droid;
+using Syncfusion.XForms.Buttons;
 
 namespace JICtravel.Prism.Droid
 {
@@ -23,6 +24,7 @@ namespace JICtravel.Prism.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             new SfBusyIndicatorRenderer();
+            new SfButton();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             LoadApplication(new App(new AndroidInitializer()));
         }

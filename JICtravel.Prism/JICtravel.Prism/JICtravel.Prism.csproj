@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.1.0.45" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="18.1.0.43" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />

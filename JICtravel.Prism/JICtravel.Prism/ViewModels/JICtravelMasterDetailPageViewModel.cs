@@ -60,12 +60,6 @@ namespace JICtravel.Prism.ViewModels
                 },
                 new Menu
                 {
-                    Icon = "ReportIncident",
-                    PageName = "ReportPage",
-                    Title = "Report an incident"
-                },
-                new Menu
-                {
                     Icon = "Exit",
                     PageName = "LoginPage",
                     Title = Settings.IsLogin ? "Logout" : "Login"

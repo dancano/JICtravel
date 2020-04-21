@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="JICtravel.Prism.Views.NewTripPage"
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
 
     <ContentPage.Content>
-        <AbsoluteLayout>
+        <StackLayout>
             <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -49,12 +50,24 @@
                                    Text="{Binding CityVisited}"/>
                 </Grid>
             <StackLayout>
-                <Button Padding="30" Text="Add Trip" 
-                                BackgroundColor="#118C76" 
-                                TextColor="#011F26"
-                                BorderRadius="20" 
-                                Command="{Binding AddTripCommand}"
-                                IsEnabled="{Binding IsEnabled}"/>
+                <buttons:SfButton
+                                     Command="{Binding AddTripCommand}"
+                                     IsEnabled="{Binding IsEnabled}"
+                                     HeightRequest="50"
+                                     WidthRequest="300"
+                                     VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand"
+                                     CornerRadius="25"
+                                     HasShadow="True"
+                                     BorderWidth="1"
+                                     BorderColor="Gray"
+                                     BackgroundColor="#118C76"
+                                     ImageSource="Airplane.png"
+                                     ShowIcon="True"
+                                     ImageWidth="100"
+                                     ImageAlignment="Start"
+                                     FontSize="18"
+                                     Text="Add Trip"/>
             </StackLayout>
             <busyindicator:SfBusyIndicator AnimationType="Globe" 
                                            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
@@ -67,6 +80,6 @@
                 	                       VerticalOptions="Center"
                 	                       ViewBoxWidth="80"
                 	                       ViewBoxHeight="80" />
-        </AbsoluteLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
