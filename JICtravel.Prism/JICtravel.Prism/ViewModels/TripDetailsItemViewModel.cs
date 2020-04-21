@@ -1,5 +1,7 @@
-﻿using JICtravel.Common.Models;
+﻿using JICtravel.Common.Helpers;
+using JICtravel.Common.Models;
 using JICtravel.Prism.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using System;
@@ -27,6 +29,7 @@ namespace JICtravel.Prism.ViewModels
             {
                 { "trip", this }
             };
+            Settings.Trip = JsonConvert.SerializeObject(this);
             await _navigationService.NavigateAsync(nameof(TripDetailPage), parameters);
         }
     }

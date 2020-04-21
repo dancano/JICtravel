@@ -90,7 +90,7 @@ namespace JICtravel.Prism.ViewModels
             IsRunning = false;
             IsEnabled = true;
 
-            await _navigationService.NavigateAsync("/JICtravelMasterDetailPage/NavigationPage/HomePage");
+            await _navigationService.GoBackAsync();
         }
 
     }

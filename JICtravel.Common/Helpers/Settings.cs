@@ -8,6 +8,7 @@ namespace JICtravel.Common.Helpers
         private const string _user = "user";
         private const string _token = "token";
         private const string _isLogin = "isLogin";
+        private const string _trip = "trip";
         private static readonly string _stringDefault = string.Empty;
         private static readonly bool _boolDefault = false;
 
@@ -30,6 +31,11 @@ namespace JICtravel.Common.Helpers
             get => AppSettings.GetValueOrDefault(_isLogin, _boolDefault);
             set => AppSettings.AddOrUpdateValue(_isLogin, value);
         }
-    }
 
+        public static string Trip
+        {
+            get => AppSettings.GetValueOrDefault(_trip, _stringDefault);
+            set => AppSettings.AddOrUpdateValue(_trip, value);
+        }
+    }
 }

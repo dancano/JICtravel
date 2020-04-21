@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="JICtravel.Prism.Views.AddExpensePage"
+             BackgroundColor="{StaticResource ColorBackgroud}"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid>
+                <Image Source="TravelFly.jpg" Aspect="AspectFill"/>
+                <BoxView Color="LemonChiffon" Opacity="0.8"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ffimageloading:CachedImage Aspect="AspectFit"
+                                                Grid.Row="0"
+                                                Source="{Binding Image}" 
+                                                CacheDuration= "50"
+                                                HeightRequest="150"
+                                                Margin="5"
+                                                RetryCount= "3"
+                                                RetryDelay= "600">
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation />
+                        </ffimageloading:CachedImage.Transformations>
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
+                    <StackLayout Grid.Row="1" Padding="30,20">
+                        <Label Text="Invoice Picture"/>
+                        
+                        <DatePicker Date="{Binding StartDate}"/>
+                        
+                        <Entry Placeholder="Expense" 
+                               PlaceholderColor="Black"
+                               Text="{Binding Expense}"/>
+
+                        <Button Text="Add Expense" 
+                                BackgroundColor="#118C76" 
+                                TextColor="#011F26"
+                                BorderRadius="20" 
+                                Command="{Binding AddExpenseCommand}"
+                                IsEnabled="{Binding IsEnabled}"/>
+                    </StackLayout>
+
+                </Grid>
+            </Grid>
+            <busyindicator:SfBusyIndicator AnimationType="Globe" 
+                                           AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                       AbsoluteLayout.LayoutFlags="All"
+                	                       BackgroundColor="{StaticResource ColorPrimary}"
+                	                       HorizontalOptions="Center"
+                	                       TextColor="{StaticResource ColorFontInverse}"
+                	                       IsVisible="{Binding IsRunning}"
+                	                       Title="Loading..."
+                	                       VerticalOptions="Center"
+                	                       ViewBoxWidth="80"
+                	                       ViewBoxHeight="80" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
